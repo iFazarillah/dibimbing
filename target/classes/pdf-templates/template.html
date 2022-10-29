@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        h1{
+            color: brown;
+        }
+        .quotation {
+            width: 100%;
+        }
+        .quotation, .quotation th, .quotation td {
+            border: 1px solid brown;
+            border-collapse: collapse;
+        }
+        .quotation th {
+            background-color: brown;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Quotation</h1>
+<div  th:if="${user}">
+    <table>
+        <tr>
+            <th>Customer</th>
+        </tr>
+        <tr>
+            <td th:text="'Company Name: TEAM 2 CELL' "></td>
+        </tr>
+        <tr>
+            <td th:text="'Contact Name: ' + ${user.fullname}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Address: ' + ${user.pembeli.alamat}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Email: ' + ${user.username}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Phone: ' + ${user.pembeli.noHp}"></td>
+        </tr>
+    </table>
+</div>
+
+<br />
+<table class="quotation">
+    <tr>
+        <th>Item #</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="item, iterStat: ${quoteItems}">
+        <td th:text="${iterStat.index + 1}"></td>
+        <td th:text="${item.nama}"></td>
+        <td th:text="${item.qty}"></td>
+        <td th:text="${item.harga}"></td>
+        <td th:text="${item.totalHarga}"></td>
+    </tr>
+</table>
+</body>
+</html>
